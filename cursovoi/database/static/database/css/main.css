@@ -1,0 +1,553 @@
+body {
+    background: #2c2c2c;
+}
+
+a {
+    text-decoration: none; /* Убирает подчеркивание ссылок */
+    color: #fff;
+    display: inline-block; /* Делаем ссылку строчно-блочной */
+    transition: transform .6s ease;
+}
+
+a:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+/* БОКОВАЯ ПАНЕЛЬ */
+
+aside {
+    position: fixed;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+aside .logo-container {
+    display: flex; /* Используем Flexbox */
+    flex-direction: column; /* Располагаем элементы вертикально */
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    text-align: center; /* Центрируем текст */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+aside img {
+    margin-top: 20px;
+    width: 70px;
+    max-width: 70px; /* Максимальная ширина изображения */
+    height: auto; /* Сохраняем пропорции изображения */
+}
+
+aside .logo1 {
+    font-size: 40px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+}
+
+aside .logo1{
+    font-size: clamp(20px, 4vw, 40px); /* Адаптивный размер шрифта */
+    margin-left: 0; /* Убираем лишние отступы */
+    word-wrap: break-word; /* Переносим длинные слова на новую строку */
+}
+
+#navigation {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#navigation li {
+    overflow: hidden; /* Скрывает переполненный текст */
+    text-overflow: ellipsis; /* Добавляет многоточие для усеченного текста */
+}
+
+#navigation .button {
+    background: none; /* Убирает фон кнопки */
+    border: none; /* Убирает рамку кнопки */
+    outline: none; /* Убирает контур при фокусе */
+    padding: 0; /* Убирает внутренние отступы */
+    margin: 0; /* Убирает внешние отступы */
+    cursor: pointer; /* Добавляет указатель мыши при наведении */
+}
+
+@media screen and (max-width: 1200px) {
+    aside {
+        padding: 1%;
+        font-size: 0.9em;
+    }
+
+    #navigation li {
+        font-size: 0.8em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+    }
+}
+
+
+ul {list-style: none}
+aside ul li {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+ul a {text-decoration: none;}
+
+aside ul li:hover, aside ul a:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+/*  ОСНОВНОЙ БЛОК СТРАНИЦЫ */
+
+.features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    float: left;
+    color: #fff;
+    margin-top: 100px;
+    text-align: center;
+    width: 80%;
+    margin-left: 20%; /* Оставляем место для aside */
+    flex-wrap: wrap;
+}
+
+main .features h1 {font-size: 50px;}
+main .features p {max-width: 700px; margin: 20px auto}
+
+form {
+    margin:auto;
+    width: 550px;
+    margin-top: 50px;
+    background-color: #4d4d4d;
+    padding: 30px;
+    border-radius: 10px;
+
+}
+
+.custom-button {
+    width: 100%; /* Ширина кнопки */
+    padding: 7px; /* Отступы для кнопки */
+}
+
+.form-empty {
+    width: 100%;
+    background-color: #2c2c2c;
+}
+
+@media (max-width: 1000px) {
+    form {
+        width: 70%; /* Уменьшаем ширину формы */
+        margin-top: 50px; /* Уменьшаем отступ сверху */
+    }
+}
+
+#copyright {
+    text-align: center;
+    margin-top: auto;
+}
+
+/* УБРАТЬ ПУСТОЙ ВАРИАНТ ВЫБОРА */
+select option[value=""] {
+    display: none;
+}
+
+/* ЛИЧНАЯ ИНФОРМАЦИЯ */
+.container-info {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+@media (max-width: 1400px) {
+    .container-info {
+        width: 85%; /* Уменьшаем ширину формы */
+        margin-top: 20px; /* Уменьшаем отступ сверху */
+    }
+}
+
+@media (min-width: 1000px) {
+    .left {
+    width: fit-content;
+    width: 38%;
+
+    }
+    .right {
+    width: 58%;
+    }
+
+    .column-left {
+        width: 64%; /* Колонки занимают всю ширину */
+        padding-right: 10px;
+    }
+    .column-right {
+        width: 36%; /* Колонки занимают всю ширину */
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .profile-info {
+        flex-direction: column; /* Блоки выстраиваются в столбец */
+        gap: 30px; /* Увеличиваем расстояние между блоками */
+        width: 100%;
+        align-items: center;
+    }
+
+    .left, .right {
+        width: 80%; /* Блоки занимают всю ширину */
+    }
+
+    .right-top, .right-bottom {
+        display: flex;
+        flex-direction: column; /* Колонки внутри блока также выстраиваются в столбец */
+    }
+
+    .column-left {
+        width: 100%; /* Колонки занимают всю ширину */
+    }
+
+    .column-left, .column-right {
+        width: 100%; /* Колонки занимают всю ширину */
+        margin: -8px;
+    }
+}
+
+h2 {
+    text-align: center;
+}
+.profile-info {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.profile-info p {
+    margin: 5px 0;
+}
+
+.name {
+    font-size:26px;
+}
+
+.left-info {
+    background-color: #4d4d4d;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.right-top {
+    width: 100%;
+    background-color: #4d4d4d;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: fit-content;
+}
+
+.right-top-2 {
+    width: 100%;
+    background-color: #4d4d4d;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.right-bottom {
+    width: 100%;
+    background-color: #4d4d4d;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    font-size: 26px;
+}
+
+.profile-picture {
+    width: 85%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #6e6e6e;
+    margin: 20px auto 0 auto;
+    border: 0px solid #181818;
+}
+
+#information {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    list-style: none;
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+#information li {
+    color: #fff;
+    transition: transform .6s ease;
+    padding:7px;
+}
+
+#information li:hover, a:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+.subject-item {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+
+}
+
+
+#pass {
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+#pass li{
+    list-style: none;
+    margin-top: 18px;
+    color: #fff;
+    text-decoration: none;
+    transition: transform .6s ease;
+}
+#pass li:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+/* СТИЛИ ДЛЯ ТАБЛИЦ */
+
+.styled-table {
+    table-layout: fixed;
+    width: 70%;
+    border-collapse: separate;
+    border-spacing: 0; /* Уберите пробелы между ячейками */
+    border-radius: 10px; /* Скруглите углы */
+    margin: 20px auto;
+    overflow: hidden; /* Обрежьте содержимое, чтобы скругленные углы работали корректно */
+}
+
+.styled-table tr:first-child th:first-child {
+    border-top-left-radius: 10px; /* Скругленный угол сверху слева */
+}
+.styled-table tr:first-child th:last-child {
+    border-top-right-radius: 10px; /* Скругленный угол сверху справа */
+}
+.styled-table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Скругленный угол снизу слева */
+}
+.styled-table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Скругленный угол снизу справа */
+}
+
+.styled-table th, .styled-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.styled-table th {
+    background-color: #4d4d4d;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #4d4d4d;
+}
+
+.styled-table-2 {
+    table-layout: fixed;
+    width: 70%;
+    border-collapse: separate;
+    border-spacing: 0; /* Уберите пробелы между ячейками */
+    border-radius: 10px; /* Скруглите углы */
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.department {
+    background-color: #4d4d4d;
+}
+
+.styled-table-2 td {
+    border: 1px solid #ddd; /* Граница ячеек */
+    padding: 10px;
+    text-align: left;
+}
+.styled-table-2 tr:first-child td:first-child {
+    border-top-left-radius: 10px; /* Скругленный угол сверху слева */
+}
+.styled-table-2 tr:first-child td:last-child {
+    border-top-right-radius: 10px; /* Скругленный угол сверху справа */
+}
+.styled-table-2 tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Скругленный угол снизу слева */
+}
+.styled-table-2 tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Скругленный угол снизу справа */
+}
+
+
+.tables-container {
+    display: flex; /* Используем Flexbox для горизонтального расположения */
+    flex-wrap: wrap; /* Если не помещаются, переносим на следующую строку */
+    gap: 50px; /* Расстояние между таблицами */
+    justify-content: center; /* Выравнивание по центру */
+    align-items: flex-start;
+    margin-left: 50px; /* Отступ слева */
+    margin-right: 50px; /* Отступ справа */
+}
+
+.styled-table-3 {
+    table-layout: fixed;
+    width: 250px;
+    border-collapse: separate;
+    border-spacing: 0; /* Уберите пробелы между ячейками */
+    border-radius: 10px; /* Скруглите углы */
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.group {
+    background-color: #4d4d4d;
+}
+
+.styled-table-3 td {
+
+    border: 1px solid #ddd; /* Граница ячеек */
+    padding: 10px;
+    text-align: center;
+}
+.styled-table-3 tr:first-child td:first-child {
+    border-top-left-radius: 10px; /* Скругленный угол сверху слева */
+}
+.styled-table-3 tr:first-child td:last-child {
+    border-top-right-radius: 10px; /* Скругленный угол сверху справа */
+}
+.styled-table-3 tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Скругленный угол снизу слева */
+}
+.styled-table-3 tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Скругленный угол снизу справа */
+}
+
+.text-faculty {
+    font-size : 50px;
+}
+
+/* ТАБЛИЦЫ ОЦЕНОК/ДИСЦИПЛИН/СТУДЕНТОВ */
+
+
+@media (max-width: 1450px) {
+
+    .table-wrapper {
+    max-width: 100%;  /* Ограничивает ширину контейнера */
+    font-size: clamp(5px, 4vw, 15px); /* Адаптивный размер шрифта */
+    }
+
+    .styled-table {
+        width: 80%;      /* Таблица занимает всю доступную ширину */
+        border-collapse: collapse;
+    }
+
+    .styled-table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0; /* Уберите пробелы между ячейками */
+    border-radius: 10px; /* Скруглите углы */
+    margin: 20px auto;
+    overflow: hidden; /* Обрежьте содержимое, чтобы скругленные углы работали корректно */
+    }
+
+    .styled-table tr:first-child th:first-child {
+        border-top-left-radius: 10px; /* Скругленный угол сверху слева */
+    }
+    .styled-table tr:first-child th:last-child {
+        border-top-right-radius: 10px; /* Скругленный угол сверху справа */
+    }
+    .styled-table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px; /* Скругленный угол снизу слева */
+    }
+    .styled-table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px; /* Скругленный угол снизу справа */
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .table-wrapper {
+    max-width: 100%;  /* Ограничивает ширину контейнера */
+    font-size: clamp(5px, 4vw, 10px); /* Адаптивный размер шрифта */
+    }
+
+    .styled-table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0; /* Уберите пробелы между ячейками */
+    border-radius: 10px; /* Скруглите углы */
+    margin: 20px auto;
+    overflow: hidden; /* Обрежьте содержимое, чтобы скругленные углы работали корректно */
+    }
+
+    .styled-table tr:first-child th:first-child {
+        border-top-left-radius: 10px; /* Скругленный угол сверху слева */
+    }
+    .styled-table tr:first-child th:last-child {
+        border-top-right-radius: 10px; /* Скругленный угол сверху справа */
+    }
+    .styled-table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px; /* Скругленный угол снизу слева */
+    }
+    .styled-table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px; /* Скругленный угол снизу справа */
+    }
+}
+
+@media (max-width: 900px) {
+
+    .table-wrapper {
+    max-width: 100%;  /* Ограничивает ширину контейнера */
+    font-size: clamp(5px, 4vw, 10px); /* Адаптивный размер шрифта */
+    }
+
+    th, td  {
+        overflow: hidden; /* Скрывает переполненный текст */
+        text-overflow: ellipsis; /* Добавляет многоточие для усеченного текста */
+    }
+
+    .styled-table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0; /* Уберите пробелы между ячейками */
+    border-radius: 10px; /* Скруглите углы */
+    margin: 20px auto;
+    overflow: hidden; /* Обрежьте содержимое, чтобы скругленные углы работали корректно */
+    }
+
+    .styled-table tr:first-child th:first-child {
+        border-top-left-radius: 10px; /* Скругленный угол сверху слева */
+    }
+    .styled-table tr:first-child th:last-child {
+        border-top-right-radius: 10px; /* Скругленный угол сверху справа */
+    }
+    .styled-table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px; /* Скругленный угол снизу слева */
+    }
+    .styled-table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px; /* Скругленный угол снизу справа */
+    }
+}
+
+

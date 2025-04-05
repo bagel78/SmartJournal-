@@ -1,0 +1,64 @@
+{% extends 'database/layout.html' %}
+{% load static %}
+{% block content %}
+    <div class="features">
+        <h2>Профиль преподавателя</h2>
+        <div class="container-info">
+
+        <div class="profile-info">
+            <div class="left">
+                <div class="left-info">
+                    <img src="{{ teacher.get_photo_url }}" alt="Фото профиля" class="profile-picture">
+                    <p class="name"> <strong>{{ teacher.last_name }} {{ teacher.first_name }}
+                        {{ teacher.father_name }}</strong></p>
+                    <p><strong>Дата рождения:</strong> {{ teacher.birth_date|date:"d.m.Y" }}</p>
+                    <p><strong>Пол:</strong> {{ teacher.gender }}</p>
+                    <p><strong>Телефон:</strong> {{ teacher.phone_number|default:"не указан" }}</p>
+                </div>
+
+                <div class="div-button">
+                    {% if teacher.user_id == request.user %}
+                    <ul id="pass">
+                        <a href="{% url 'password_change' %}" ><li>Сменить пароль</li></a>
+                    </ul>
+                    {% endif %}
+
+                    {% if teacher.user_id == request.user or request.user.is_superuser %}
+                    <button class="btn btn-outline-success" onclick="window.location.href='{% url 'teachers-update' teacher.id %}'">Редактировать</button>
+                        {% if request.user.is_superuser %}
+                        <button class="btn btn-outline-danger" onclick="window.location.href='{% url 'teachers-delete' teacher.id %}'">Удалить</button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="right">
+                <div class="right-top-2">
+                    <p><strong>Факультет:</strong> {{ teacher.department_name.faculty_name.name }}</p>
+                    <p><strong>Кафедра:</strong> {{ teacher.department_name.name }}</p>
+                    <p><strong>Должность:</strong> {{ teacher.post }}</p>
+                </div>
+                <br>
+                <div class="right-bottom">
+                    <p><strong>Дополнительная информация:</strong>
+                        <ul id="information">
+                            {% if teacher.user_id == request.user %}
+                            <li><a href="{% url 'grade_management' %}">Выставление оценок</a></li>
+                            {% endif %}
+                            <div style="margin-top: 8px; display: block;">
+                                <span>Основные дисциплины:</span>
+                            {% for subject in teacher_subjects %}
+                                    <span class="subject-item">{{ subject.name }};</span>
+                                {% empty %}
+                                    <span class="subject-item">Нет назначенных дисциплин.</span>
+                                {% endfor %}
+                            </div>
+
+                        </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+{% endblock %}

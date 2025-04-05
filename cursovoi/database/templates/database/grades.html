@@ -1,0 +1,85 @@
+{% extends 'database/layout.html' %}
+
+{% block content %}
+<div class="features">
+    <h2>Выставление оценок</h2>
+
+    <!-- Форма выбора предмета и группы -->
+    <form method="get">
+        <div>
+            <div>
+                <label>Предмет:</label>
+                <select name="subject" class="form-control" onchange="this.form.submit()">
+                    <option value="">-- Выберите предмет --</option>
+                    {% for subject in subjects %}
+                    <option value="{{ subject.id }}"
+                        {% if subject == selected_subject %}selected{% endif %}>
+                        {{ subject.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            {% if selected_subject %}
+            <div>
+                <label>Группа:</label>
+                <select name="group" class="form-control" onchange="this.form.submit()">
+                    <option value="">-- Выберите группу --</option>
+                    {% for group in groups %}
+                    <option value="{{ group.id }}"
+                        {% if group == selected_group %}
+                            selected
+                        {% endif %}>
+                        {{ group.number }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+        </div>
+    </form>
+
+    {% if selected_group and not formset.forms %}
+    <div>
+        <p> Нет студентов в группе или предмет не назначен. </p>
+    </div>
+    {% endif %}
+    <!-- Форма выставления оценок -->
+    {% if formset and formset.forms %}
+    <form method="post" class="form-empty">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        <input type="hidden" name="subject" value="{{ selected_subject.id }}">
+        <input type="hidden" name="group" value="{{ selected_group.id }}">
+
+        <div>
+            <div>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 70%">Студент</th>
+                            <th style="width: 30%">Оценка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for form in formset %}
+                            <tr>
+                                <td>{{ form.instance.student_id.last_name }} {{ form.instance.student_id.first_name }} {{ form.instance.student_id.father_name }}</td>
+                                <td>{{ form }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-outline-success">
+                    Сохранить оценки
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

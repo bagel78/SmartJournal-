@@ -1,0 +1,26 @@
+{% extends 'database/layout.html' %}
+
+{% block content %}
+    <div class="features">
+        <h1>Факультеты</h1>
+        <br>
+        {% if faculties %}
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th><h2 style="text-align: left;">Наименование</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for el in faculties %}
+                    <tr>
+                        <td><a href="{% url 'faculties-detail' el.id %}" style="font-size: 25px;" >{{ el.name }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>У вас нет записей.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'database/layout.html' %}
+{% load static %}
+{% block content %}
+    <div class="features">
+        <h2>Профиль студента</h2>
+        <div class="container-info">
+
+        <div class="profile-info">
+            <div class="left">
+                <div class="left-info">
+                    <img src="{{ student.get_photo_url }}" alt="Фото профиля" class="profile-picture">
+                    <p class="name"> <strong>{{ student.last_name }} {{ student.first_name }}
+                        {{ student.father_name }}</strong></p>
+                    <p><strong>Дата рождения:</strong> {{ student.birth_date|date:"d.m.Y" }}</p>
+                    <p><strong>Пол:</strong> {{ student.gender }}</p>
+                    <p><strong>Телефон:</strong> {{ student.phone_number|default:"не указан" }}</p>
+                </div>
+
+                <div class="div-button">
+                    {% if student.user_id == request.user %}
+                    <ul id="pass">
+                        <a href="{% url 'password_change' %}" ><li>Сменить пароль</li></a>
+                    </ul>
+                    {% endif %}
+
+                    {% if student.user_id == request.user or request.user.is_superuser %}
+                    <button class="btn btn-outline-success" onclick="window.location.href='{% url 'students-update' student.id %}'">Редактировать</button>
+                    {% if request.user.is_superuser %}
+                        <button class="btn btn-outline-danger" onclick="window.location.href='{% url 'students-delete' student.id %}'">Удалить</button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="right">
+                <div class="right-top">
+                    <div class="column-left">
+                        <p><strong>Факультет:</strong> {{ student.group.specialty_name.department_name.faculty_name.name }}</p>
+                        <p><strong>Группа:</strong> {{ student.group }}</p>
+                        <p><strong>Специальность:</strong> {{ student.group.specialty_name.name }}</p>
+                    </div>
+                    <div class="column-right">
+                        <p><strong>Кафедра:</strong> {{ student.group.specialty_name.department_name.name }}</p>
+                        <p><strong>Курс:</strong> {{ course }}</p>
+                        <p><strong>Форма обучения:</strong> {{ student.group.specialty_name.form_of_education }}</p>
+                    </div>
+                </div>
+                <br>
+                {% if student.user_id == request.user %}
+                <div class="right-bottom">
+                    <p><strong>Дополнительная информация:</strong>
+                        <ul id="information">
+                            <a href="{% url 'student_subjects' student.pk %}"><li>Учебные дисциплины</li></a>
+                            <a href="{% url 'student_grades' student.pk %}"><li>Оценки по результатам сессий</li></a>
+                        </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    </div>
+{% endblock %}

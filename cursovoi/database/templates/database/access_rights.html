@@ -1,0 +1,12 @@
+{% extends 'database/layout.html' %}
+
+{% block content %}
+    <div class="features">
+        <h1>Недостаточно прав</h1>
+        <p>У вас недостаточно прав для доступа к данной странице.</p>
+        <form style="margin-top:-20px;" class="form-empty" action="{% url 'redirect-to-personal-page' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-secondary">← Назад</button>
+        </form>
+    </div>
+{% endblock %}

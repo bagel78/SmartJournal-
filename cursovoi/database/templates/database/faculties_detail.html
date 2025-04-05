@@ -1,0 +1,41 @@
+{% extends 'database/layout.html' %}
+{% block content %}
+    <div class="features">
+        <strong><h2>{{ faculty.name }}</h2></strong>
+        <br>
+        <button class="btn btn-outline-secondary" onclick="window.location.href='{% url 'faculties-list' %}'">← Назад к факультетам</button>
+        <br>
+        {% if courses %}
+            {# Создаём цикл для курсов от 1 до 5 #}
+            {% load custom_filters %}
+            <div class="tables-container">
+                {% for course_number in 5|times %}
+                <table class="styled-table-3">
+                    <tbody>
+                        <tr>
+                            <td class="group"><h3>{{ course_number }} курс</h3></td>
+                        </tr>
+                        {% if courses|get_item:course_number %}
+                        {% for group in courses|get_item:course_number|dictsort:"number" %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'group-detail' group.id %}">{{ group.number }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>
+                                    <p style="color: #666;">Нет групп на этом курсе</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Группы отсутствуют.</p>
+        {% endif %}
+    </div>
+{% endblock %}

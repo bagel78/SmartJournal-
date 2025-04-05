@@ -1,0 +1,17 @@
+{% extends 'database/layout.html' %}
+
+{% block content %}
+    <div class="features">
+        <h1>Создание профиля</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <h2>Заполните данные</h2>
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ form.as_p }}
+            <span>{{ error }}</span>
+            <button class="btn btn-success custom-button"  type="submit"> Добавить </button>
+        </form>
+        <br><br>
+    </div>
+{% endblock %}

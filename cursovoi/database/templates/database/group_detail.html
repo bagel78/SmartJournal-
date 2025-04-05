@@ -1,0 +1,30 @@
+{% extends 'database/layout.html' %}
+
+{% block content %}
+    <div class="features">
+        <h1>Группа {{ group.number }}</h1>
+        <br>
+        <button class="btn btn-outline-secondary" onclick="window.location.href='{% url 'faculties-detail' group.specialty_name.department_name.faculty_name.id %}'">← Назад к группам</button>
+        <br>
+        <h2>Список обучающихся:</h2>
+        {% if students %}
+        <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td><a href="{% url 'students-detail' student.id %}">{{ student.last_name }} {{ student.first_name }}
+                        {{ student.father_name|default_if_none:"" }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>В этой группе нет студентов.</p>
+    {% endif %}
+    </div>
+{% endblock %}

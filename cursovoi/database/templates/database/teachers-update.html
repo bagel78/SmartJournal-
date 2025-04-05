@@ -1,0 +1,17 @@
+{% extends 'database/layout.html' %}
+
+{% block content %}
+    <div class="features">
+        <h1>Редактирование профиля</h1>
+        <br>
+        <button class="btn btn-outline-secondary" onclick="window.location.href='{{ teacher.get_absolute_url }}'">← Назад к профилю</button>
+        <form method="post" enctype="multipart/form-data">
+            <h2>Заполните или обновите данные</h2>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <span>{{ error }}</span>
+            <button class="btn btn-success custom-button" type="submit"> Редактировать </button>
+        </form>
+        <br><br>
+    </div>
+{% endblock %}
